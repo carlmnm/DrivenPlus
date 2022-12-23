@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+//import Context from "./components/Context"
+import UserContext from "./contexts/UserContext"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import GlobalStyle from "./components/GlobalStyle"
+import { useState } from "react"
+import Screen1 from "./components/Screen1"
+import Register from "./components/Register"
 
 function App() {
+  const tokenOnLocalStorage = localStorage.getItem("token")
+  const [token, setToken] = useState(tokenOnLocalStorage)
+
+  function SetAndPersistToken(token) {
+    setToken(token)
+    localStorage.setItem("token", token)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={{ token, setToken, SetAndPersistToken }}>
+      <BrowserRouter>
+        <GlobalStyle />
+        <Routes>
+          <Route path="/" element={<Screen1 />} />
+          <Route path="/sign-up" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 
