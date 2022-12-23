@@ -1,46 +1,63 @@
+import { useState } from "react"
 import styled from "styled-components"
-import { useContext, useState } from "react";
-import UserContext from "../contexts/UserContext";
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
-export default function UserLogin() {
-    const { setAndPersistToken } = useContext(UserContext)
+export default function SignUpForm() {
+    const [name, setName] = useState("")
+    const [cpf, setCpf] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate()
 
-    function login(e) {
+    function signUp(e){
         e.preventDefault()
-        const URL = "https://mock-api.driven.com.br/api/v4/driven-plus/auth/login"
-        const body = { email, password }
+        const URL = "https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up"
+        const body = {email, name, cpf, password}
 
         const promise = axios.post(URL, body)
         promise.then((res) => {
-            console.log("deu certo")
-            setAndPersistToken(res.data.token)
+            console.log("funcionou")
+            navigate("/")
         })
         promise.catch((err) => {
-            console.log(err.data.message)
+            console.log(err)
         })
     }
+
     return (
         <ContainerForm>
-            <form onSubmit={login}>
+            <form onSubmit={signUp}>
+                <Input
+                    type="text"
+                    placeholder="Nome"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    required
+                />
+                <Input
+                    type="text"
+                    placeholder="CPF"
+                    value={cpf}
+                    onChange={e => setCpf(e.target.value)}
+                    required
+                />
                 <Input
                     type="email"
-                    placeholder="e-mail"
+                    placeholder="E-mail"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     required
                 />
                 <Input
                     type="password"
-                    placeholder="senha"
+                    placeholder="Senha"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     required
                 />
                 <ButtonLogin type="submit">
-                    {"Entrar"}
+                    {"Cadastrar"}
                 </ButtonLogin>
             </form>
         </ContainerForm>

@@ -10,13 +10,13 @@ function App() {
   const tokenOnLocalStorage = localStorage.getItem("token")
   const [token, setToken] = useState(tokenOnLocalStorage)
 
-  function SetAndPersistToken(token) {
+  function setAndPersistToken(token) {
     setToken(token)
     localStorage.setItem("token", token)
   }
 
   return (
-    <UserContext.Provider value={{ token, setToken, SetAndPersistToken }}>
+    <UserContext.Provider value={{ token, setToken, setAndPersistToken }}>
       <BrowserRouter>
         <GlobalStyle />
         <Routes>
