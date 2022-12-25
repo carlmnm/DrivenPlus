@@ -157,12 +157,6 @@ h1{
 }
 `
 
-const GlobalContainer = styled.div`
-width: 375px;
-height: 667px;
-position: relative;
-`
-
 const ConfirmationWindow = styled.div`
 width: 248px;
 height: 210px;
