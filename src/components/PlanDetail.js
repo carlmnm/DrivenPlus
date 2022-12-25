@@ -4,6 +4,7 @@ import styled from "styled-components"
 import axios from "axios"
 import UserContext from "../contexts/UserContext";
 import clipboard from "../assets/imgs/clipboard.svg"
+import money from "../assets/imgs/money.svg"
 import FormToSubscribe from "./SubscribeForm";
 import arrow from "../assets/imgs/arrow.svg"
 
@@ -30,7 +31,7 @@ export default function SignUpForThePlan() {
 
     }, [])
 
-    function returnTo () {
+    function returnTo() {
         navigate("/subscriptions")
     }
 
@@ -51,9 +52,18 @@ export default function SignUpForThePlan() {
                     </h1>
                 )}
             </Benefits>
+            <Price>
+                <div className="title">
+                    <img src={money} />
+                    <p>{"Preço:"}</p>
+                </div>
+                <h1>
+                    {`R$ ${planInfo.price} cobrados mensalmente`}
+                </h1>
+            </Price>
             <FormToSubscribe />
             <div className="go-back">
-                <img src={arrow} onClick={returnTo}/>
+                <img src={arrow} onClick={returnTo} />
             </div>
         </ContainerInfos >
     )
@@ -107,7 +117,7 @@ flex-direction: column;
 width: 290px;
 height: 15px;
 margin-left: 23px;
-margin-top: 200px;
+margin-top: 250px;
 margin-bottom: 34px;
 //background-color: red;
 h1{
@@ -134,6 +144,46 @@ h1{
     }
     img{
         width: 12px;
+    }
+}
+`
+
+const Price = styled.div`
+display: flex;
+align-items: flex-start;
+justify-content: center;
+flex-direction: column;
+width: 290px;
+height: 15px;
+margin-left: 12px;
+margin-top: 12px;
+margin-bottom: 34px;
+//background-color: red;
+h1{
+    font-family: 'Roboto';
+    font-style: normal; 
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF;
+    margin-bottom: -40px;
+}
+.title{
+    display: flex;
+    margin-top: 43px;
+    margin-bottom: 0px;
+    p{
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        color: #FFFFFF;
+        margin-bottom: 7px;
+        margin-left: 5px;
+
+    }
+    img{
+        width: 15px;
+        margin-bottom: -5px;
     }
 }
 `
