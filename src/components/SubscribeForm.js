@@ -55,7 +55,7 @@ export default function FormToSubscribe() {
         })
         promise.catch((err) => {
             alert(err.response.data.details)
-        }) 
+        })
 
     }
 
@@ -101,21 +101,23 @@ export default function FormToSubscribe() {
                         onChange={e => setExpirationDate(e.target.value)}
                         required
                     />
-                    <ButtonLogin type="submit">
-                        <p>{"ASSINAR"}</p>
-                    </ButtonLogin>
+                    <ButtonSubscribe type="submit">
+                        <h1>{"ASSINAR"}</h1>
+                    </ButtonSubscribe>
                 </form>
             </ContainerForm>
             <Modal visibility={modalVisibility}>
                 <ConfirmationWindow>
-                    <p>{`Tem certeza que deseja assinar o plano`} </p>
-                    <p>{`${planInfo.name} (R$ ${planInfo.price})?`}</p>
+                    <h2>{`Tem certeza que deseja assinar o plano`} </h2>
+                    <h2>{`${planInfo.name} (R$ ${planInfo.price})?`}</h2>
                     <div className="buttons">
                         <NoButton onClick={closeAndOpenModal}><h1>{"Não"}</h1></NoButton>
                         <YesButton onClick={subscribe}><h1>{"SIM"}</h1></YesButton>
                     </div>
                 </ConfirmationWindow>
-                <img onClick={closeAndOpenModal} src={closeX}/>
+                <CloseButton>
+                    <img onClick={closeAndOpenModal} src={closeX} alt={"Botão de fechar"} style={{width: '28px'}}/>
+                </CloseButton>
             </Modal>
         </>
     )
@@ -157,6 +159,17 @@ h1{
 }
 `
 
+const Modal = styled.div`
+width: 375px;
+height: 667px;
+background-color: rgba(0, 0, 0, 0.7);
+display: ${props => props.visibility ? "flex" : "none"};
+z-index: 1;
+position: absolute;
+justify-content: center;
+align-items: center;
+`
+
 const ConfirmationWindow = styled.div`
 width: 248px;
 height: 210px;
@@ -169,7 +182,7 @@ flex-direction: column;
 .buttons{
     margin-top: 47px;
 }
-p{
+h2{
     margin-top: 0px;
     font-family: 'Roboto';
     font-style: normal;
@@ -178,23 +191,6 @@ p{
     color: #000000;
     text-align: center;
     line-height: 21px;
-}
-`
-
-const Modal = styled.div`
-width: 375px;
-height: 667px;
-background-color: rgba(0, 0, 0, 0.7);
-display: ${props => props.visibility ? "flex" : "none"};
-z-index: 1;
-position: absolute;
-justify-content: center;
-align-items: center;
-img{
-    width: 28px;
-    position: absolute;
-    top: 26px;
-    right: 20px;
 }
 `
 
@@ -248,10 +244,25 @@ margin-left: 2px;
 }
 `
 
-const ButtonLogin = styled.button`
+const ButtonSubscribe = styled.button`
 width: 298px;
 height: 52px;
 background: #FF4791;
 border-radius: 8px;
 margin-top: 8px;
+h1{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+`
+
+const CloseButton = styled.div`
+img{
+    position: absolute;
+    top: 26px;
+    right: 20px;
+}
 `
