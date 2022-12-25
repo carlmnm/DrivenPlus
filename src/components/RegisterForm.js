@@ -57,7 +57,7 @@ export default function SignUpForm() {
                     required
                 />
                 <ButtonLogin type="submit">
-                    {"Cadastrar"}
+                    <p>{"Cadastrar"}</p>
                 </ButtonLogin>
             </form>
         </ContainerForm>
@@ -95,4 +95,11 @@ height: 52px;
 background: #FF4791;
 border-radius: 8px;
 margin-top: 8px;
+p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    color: #FFFFFF;
+}
 `

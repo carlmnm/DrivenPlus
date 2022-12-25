@@ -8,7 +8,7 @@ export default function RegisterScreen() {
             <SignUpForm />
             <Link to={`/`}>
                 <h1>
-                    {"Já possuí uma conta? Entre"}
+                    {"Já possui uma conta? Entre"}
                 </h1>
             </Link>
         </ContainerLogin>

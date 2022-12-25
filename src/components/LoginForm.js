@@ -1,12 +1,24 @@
 import styled from "styled-components"
-import { useContext, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import UserContext from "../contexts/UserContext";
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export default function UserLogin() {
-    const { setAndPersistToken } = useContext(UserContext)
+    const { token, setAndPersistToken, myMembershipId } = useContext(UserContext)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (token) {
+            if (myMembershipId) {
+                navigate(`/home/${myMembershipId}`)
+            } else {
+                navigate("/subscriptions")
+            }
+        }
+    }, [])
 
     function login(e) {
         e.preventDefault()
@@ -17,9 +29,10 @@ export default function UserLogin() {
         promise.then((res) => {
             console.log("deu certo")
             setAndPersistToken(res.data.token)
+            navigate("/subscriptions")
         })
         promise.catch((err) => {
-            console.log(err.data.message)
+            alert("Verifique os dados fornecidos e tente novamente")
         })
     }
     return (
@@ -40,7 +53,7 @@ export default function UserLogin() {
                     required
                 />
                 <ButtonLogin type="submit">
-                    {"Entrar"}
+                    <p>{"Entrar"}</p>
                 </ButtonLogin>
             </form>
         </ContainerForm>
@@ -78,4 +91,11 @@ height: 52px;
 background: #FF4791;
 border-radius: 8px;
 margin-top: 8px;
+p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    color: #FFFFFF;
+}
 `
