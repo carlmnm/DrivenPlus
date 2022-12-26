@@ -33,7 +33,7 @@ export default function UserLogin() {
             navigate("/subscriptions")
         })
         promise.catch((err) => {
-            alert("Verifique os dados fornecidos e tente novamente")
+            alert(err.response.data.message)
         })
     }
     return (

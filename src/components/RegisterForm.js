@@ -21,7 +21,7 @@ export default function SignUpForm() {
             navigate("/")
         })
         promise.catch((err) => {
-            console.log(err)
+            alert(err.response.data.message)
         })
     }
 
