@@ -13,9 +13,17 @@ import Home from "./components/Home"
 function App() {
   const tokenOnLocalStorage = localStorage.getItem("token")
   const [token, setToken] = useState(tokenOnLocalStorage)
+  
+  const nameOnLocalStorage = localStorage.getItem("name")
+  const [name, setName] =useState(nameOnLocalStorage)
 
   const membershipIdOnLocalStorage = localStorage.getItem("myMembershipId")
   const [myMembershipId, setMyMembershipId] = useState(membershipIdOnLocalStorage)
+
+  function setAndPersistName (name) {
+    setName(name)
+    localStorage.setItem("name", name)
+  }
 
   function setAndPersistToken(token) {
     setToken(token)
@@ -28,7 +36,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ token, setToken, setAndPersistToken, myMembershipId, setMyMembershipId, setAndPersistMyMembershipId }}>
+    <UserContext.Provider value={{ token, setToken, setAndPersistToken, myMembershipId, setMyMembershipId, setAndPersistMyMembershipId, name, setName, setAndPersistName }}>
       <BrowserRouter>
         <GlobalStyle />
         <Routes>

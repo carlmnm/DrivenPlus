@@ -5,7 +5,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 export default function UserLogin() {
-    const { token, setAndPersistToken, myMembershipId } = useContext(UserContext)
+    const { token, setAndPersistToken, myMembershipId, setAndPersistName } = useContext(UserContext)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
@@ -18,7 +18,7 @@ export default function UserLogin() {
                 navigate("/subscriptions")
             }
         }
-    }, [])
+    }, [token])
 
     function login(e) {
         e.preventDefault()
@@ -29,6 +29,7 @@ export default function UserLogin() {
         promise.then((res) => {
             console.log("deu certo")
             setAndPersistToken(res.data.token)
+            setAndPersistName(res.data.name)
             navigate("/subscriptions")
         })
         promise.catch((err) => {

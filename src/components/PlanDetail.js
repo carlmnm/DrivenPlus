@@ -69,10 +69,10 @@ export default function SignUpForThePlan() {
     )
 }
 
-{/*styled components*/ }
+{/*styled components*/}
 
 const ContainerInfos = styled.div`
-background-color: #000000;
+background-color: #0E0E13;
 display: flex;
 justify-content: center;
 align-items: center;
