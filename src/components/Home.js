@@ -33,6 +33,26 @@ export default function HomePage() {
         navigate("/subscriptions")
     }
 
+    function cancelPlan (e) {
+        e.preventDefault()
+        const URL = "https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions"
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }
+
+        const promise = axios.delete(URL, config)
+        promise.then((res) => {
+            console.log(res.data)
+            localStorage.removeItem("myMembershipId")
+            navigate("/subscriptions")
+        })
+        promise.catch((err) => {
+            console.log(err.data)
+        })
+    }
+
 
     return (
         <ContainerHome>
@@ -58,7 +78,7 @@ export default function HomePage() {
                 <ChangeButton onClick={changePlan}>
                     <h2>{"Mudar plano"}</h2>
                 </ChangeButton>
-                <CancelButton>
+                <CancelButton onClick={cancelPlan}>
                     <h2>{"Cancelar plano"}</h2>
                 </CancelButton>
             </Footer>
