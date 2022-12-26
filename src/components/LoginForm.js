@@ -5,7 +5,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 export default function UserLogin() {
-    const { token, setAndPersistToken, myMembershipId, setAndPersistName } = useContext(UserContext)
+    const { token, setAndPersistToken, myMembershipId, setAndPersistName, setAndPersistMyMembershipId } = useContext(UserContext)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
@@ -30,6 +30,7 @@ export default function UserLogin() {
             console.log("deu certo")
             setAndPersistToken(res.data.token)
             setAndPersistName(res.data.name)
+            setAndPersistMyMembershipId(res.data.membership.id)
             navigate("/subscriptions")
         })
         promise.catch((err) => {

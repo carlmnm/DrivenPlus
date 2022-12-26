@@ -2,11 +2,12 @@ import UserContext from "../contexts/UserContext";
 import { useEffect, useContext, useState } from "react";
 import axios from "axios"
 import styled from "styled-components"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SubscriptionsToChoose() {
-    const { token } = useContext(UserContext)
+    const { token, myMembershipId } = useContext(UserContext)
     const [plans, setPlans] = useState([])
+    const navigate = useNavigate()
     const URL = "https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships"
     const config = {
         headers: {
@@ -17,6 +18,10 @@ export default function SubscriptionsToChoose() {
     useEffect(() => {
         const promise = axios.get(URL, config)
         promise.then((res) => setPlans(res.data))
+
+        if (myMembershipId) {
+            navigate(`/home/${myMembershipId}`)
+        }
     }, [])
 
     return (
