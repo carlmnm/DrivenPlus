@@ -11,7 +11,7 @@ export default function FormToSubscribe() {
     const [securityNumber, setSecurityNumber] = useState("")
     const [expirationDate, setExpirationDate] = useState("")
     const { idPlan } = useParams()
-    const { token, setAndPersistMyMembershipId, myMembershipId } = useContext(UserContext)
+    const { token, setAndPersistMyMembershipId } = useContext(UserContext)
     const [modalVisibility, setModalVisibility] = useState(false)
     const [planInfo, setPlanInfo] = useState([])
     const navigate = useNavigate()
@@ -29,8 +29,6 @@ export default function FormToSubscribe() {
             setPlanInfo(res.data)
 
         })
-
-        console.log(idPlan)
 
     }, [])
 

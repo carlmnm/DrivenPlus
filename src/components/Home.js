@@ -1,17 +1,16 @@
 import UserContext from "../contexts/UserContext";
 import { useState, useContext, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import styled from "styled-components";
 import person from "../assets/imgs/person.svg"
 
 export default function HomePage() {
-    const { token, setAndPersistMyMembershipId, setMyMembershipId, myMembershipId, name } = useContext(UserContext)
+    const { token, myMembershipId, name } = useContext(UserContext)
     console.log(myMembershipId)
     const [planInfo, setPlanInfo] = useState([])
     const [planPerks, setPlanPerks] = useState([])
     const navigate = useNavigate()
-
 
     useEffect(() => {
         const URL = `https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/${myMembershipId}`
@@ -52,7 +51,6 @@ export default function HomePage() {
             console.log(err.data)
         })
     }
-
 
     return (
         <ContainerHome>
@@ -118,6 +116,7 @@ h2{
     color: #FFFFFF;
 }
 `
+
 const CancelButton = styled.div`
 width: 299px;
 height: 52px;

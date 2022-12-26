@@ -6,7 +6,6 @@ import { useState } from "react"
 import Screen1 from "./components/Screen1"
 import Register from "./components/Register"
 import SubscriptionsScreen from "./components/SubscriptionsScreen"
-import { useNavigate } from "react-router-dom"
 import PlanDetail from "./components/PlanDetail"
 import Home from "./components/Home"
 
@@ -36,7 +35,18 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ token, setToken, setAndPersistToken, myMembershipId, setMyMembershipId, setAndPersistMyMembershipId, name, setName, setAndPersistName }}>
+    <UserContext.Provider value={{ 
+        token, 
+        setToken, 
+        setAndPersistToken, 
+        myMembershipId, 
+        setMyMembershipId, 
+        setAndPersistMyMembershipId, 
+        name, 
+        setName, 
+        setAndPersistName 
+        }}
+        >
       <BrowserRouter>
         <GlobalStyle />
         <Routes>

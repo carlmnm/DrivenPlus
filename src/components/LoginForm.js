@@ -27,7 +27,6 @@ export default function UserLogin() {
 
         const promise = axios.post(URL, body)
         promise.then((res) => {
-            console.log("deu certo")
             setAndPersistToken(res.data.token)
             setAndPersistName(res.data.name)
             setAndPersistMyMembershipId(res.data.membership.id)
